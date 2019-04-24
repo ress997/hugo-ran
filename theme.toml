@@ -1,0 +1,12 @@
+name = "Ran"
+license = "MIT"
+licenselink = "https://github.com/ress997/hugo-ran/blob/master/LICENSE"
+homepage = "https://github.com/ress997/hugo-ran"
+description = ""
+tags = []
+features = []
+min_version = "0.48"
+
+[author]
+name = "Ress"
+homepage = "https://x39.dev/"

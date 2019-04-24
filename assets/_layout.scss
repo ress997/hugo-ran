@@ -1,0 +1,331 @@
+@charset "utf-8";
+/*********************/
+/* LAYOUT / SECTIONS */
+/*********************/
+
+.masthead {
+	padding: 20px 0;
+	border-bottom: 1px solid #eee;
+}
+
+@media screen and (max-width: 640px) {
+	.masthead {
+		text-align: center;
+	}
+}
+
+.site-avatar {
+	float: left;
+	width: 70px;
+	height: 70px;
+	margin-right: 15px;
+	img, amp-img {
+		border-radius: 5px;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	.site-avatar {
+		float: none;
+		display: block;
+		margin: 0 auto;
+	}
+}
+
+.site-info {
+	float: left;
+}
+
+@media screen and (max-width: 640px) {
+	.site-info {
+		float: none;
+		display: block;
+		margin: 0 auto;
+	}
+}
+
+.site-name {
+	margin: 0;
+	color: #333;
+	cursor: pointer;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: 300;
+	font-size: 28px;
+	letter-spacing: 1px;
+}
+
+.site-description {
+	margin: -5px 0 0 0;
+	color: #666;
+	font-size: 16px;
+}
+
+@media screen and (max-width: 640px) {
+	.site-description {
+		margin: 3px 0;
+	}
+}
+
+nav {
+	float: right;
+	margin-top: 23px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 18px;
+	a {
+		margin-left: 20px;
+		color: #333;
+		text-align: right;
+		font-weight: 300;
+		letter-spacing: 1px;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	nav {
+		float: none;
+		margin-top: 9px;
+		display: block;
+		font-size: 16px;
+		a {
+			margin: 0 10px;
+			color: #4183C4;
+		}
+	}
+}
+
+.posts > .post {
+	padding-bottom: 2em;
+	border-bottom: 1px solid #f1f3f5;
+	&:last-child {
+		padding-bottom: 1em;
+		border-bottom: none;
+	}
+}
+
+.post {
+	h1 {
+		margin-bottom: .1em;
+	}
+	.date {
+		font-weight: 300;
+		font-size: 14px;
+		color: #868e96;
+		margin-right: 3px;
+	}
+	.tag {
+		display: inline;
+		font-weight: 300;
+		font-size: 14px;
+		li {
+			display: inline;
+			margin: 0;
+
+			&:before {
+				content: '';
+			}
+
+			> a {
+				margin: 3px 3px 3px 0;
+				padding: .5px 4px;
+				color: #343a40;
+				background-color: #e9ecef;
+				border-radius: 3px;
+			}
+		}
+	}
+
+	.comments {
+		margin-top: 10px;
+	}
+
+	.read-more {
+		font-size: 15px;
+	}
+}
+
+.pagination {
+	font-weight: 300;
+	padding: 2em 0;
+	width: 100%;
+	display: inline-block;
+	> {
+		.prev {
+			float: left;
+			width: 50%;
+			a {
+				color: #868e96;
+				&:hover, &:focus {
+					color: #495057;
+				}
+			}
+		}
+		.next {
+			float: right;
+			text-align: right;
+			width: 50%;
+			a {
+				color: #868e96;
+				&:hover, &:focus {
+					color: #495057;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 640px) {
+	.pagination {
+		font-size: 14px;
+	}
+}
+
+// Tags
+.tags > {
+	.label > li {
+		&:before {
+			content: "";
+		}
+		margin: 0;
+		font-size: 14px;
+		font-weight: 300;
+		display: inline;
+		> a {
+			display: inline-block;
+			margin: 1px;
+			color: #343a40;
+			background-color: #e9ecef;
+			border-radius: 3px;
+			span {
+				float: left;
+				padding: .5px 5px;
+				&.count {
+					background-color: #dee2e6;
+					border-radius: 0 3px 3px 0;
+				}
+			}
+		}
+	}
+}
+
+.wrapper-footer {
+	margin-top: 50px;
+	border-top: 1px solid #e9ecef;
+	border-bottom: 1px solid #e9ecef;
+	background-color: #f1f3f5;
+}
+
+footer {
+	padding: 10px 0 0;
+	text-align: center;
+	p {
+		font-size: 14px;
+	}
+	.svg-icon {
+		display: block;
+		font-size: 0;
+		list-style: none;
+		margin: 0;
+		text-align: center;
+		li {
+			display: inline-block;
+			margin: 10px;
+		}
+		svg {
+			height: 30px;
+			width: 30px;
+		}
+		em {
+			font-size: 18px;
+			line-height: 1.5;
+			margin-top: -.75em;
+			position: absolute;
+			text-align: center;
+			top: 50%;
+			right: 0;
+			bottom: 0;
+			left: 0;
+		}
+	}
+}
+
+// Code
+pre, code {
+	font-family: "Menlo", "Courier New", "Monaco", "Spoqa Han Sans", monospace;
+}
+
+pre {
+	font-size: 14px;
+	background: #f8f9fa;
+	padding: .45em .45em .45em .625em;
+	border: 1px solid #dee2e6;
+	border-radius: 3px;
+	margin: 1em 0;
+	overflow: auto;
+	&::scrollbar, &::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+code {
+	font-size: 90%;
+}
+
+
+// ToC
+#TableOfContents {
+	padding: 0 2rem;
+	margin: 0;
+
+	> ul {
+		content: "ToC";
+		background-color: #eceff1;
+		border-radius: 4px;
+		display: inline-block;
+		font-size: .8rem;
+		padding: .5rem 1rem;
+		word-break: break-all;
+		list-style: none;
+
+		> li {
+			margin: 0;
+			&:before {
+				content: none;
+				list-style: none;
+			}
+		}
+	}
+
+	ul {
+		ul {
+			padding-left: 1rem;
+
+			> li {
+				font-weight: 700;
+				margin: .5rem 0;
+			}
+
+			ul {
+				padding-left: 1rem;
+
+				> li {
+					list-style-type: disc;
+					font-weight: 500;
+				}
+			}
+		}
+	}
+
+	li {
+		color: #90a4ae;
+	}
+}
+
+@media (max-width: 768px) {
+	#TableOfContents {
+		padding: 1rem;
+
+		> ul {
+			width: 100%
+		}
+	}
+}

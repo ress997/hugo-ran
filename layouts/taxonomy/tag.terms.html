@@ -1,0 +1,22 @@
+{{ define "title" }}{{ .Title }} | {{ end }}
+
+{{ define "main" }}
+<article class="page">
+	<h1>Tags</h1>
+	<div class="entry">
+		<div class="tags">
+			<ul class="label">
+				{{ $data := .Data }}
+				{{ range $key, $value := .Data.Terms }}
+				<li>
+					<a href="{{ $data.Plural | relURL }}/{{ $key | urlize }}/">
+						<span>{{ $key }}</span>
+						<span class="count">{{ len $value }}</span>
+					</a>
+				</li>
+				{{ end }}
+			</ul>
+		</div>
+	</div>
+</article>
+{{ end }}

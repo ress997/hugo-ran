@@ -1,0 +1,48 @@
+{{ define "title" }}{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ end }}
+
+{{ define "main" }}
+<article class="posts">
+	{{ range (.Paginate .Data.Pages).Pages }}
+	<section class="post">
+		<h1>
+			<a href="{{ .Permalink }}">{{ .Title }}</a>
+		</h1>
+
+		<div class="meta">
+			<time class="date">
+				{{ .Date.Format ( .Site.Params.dateformat | default "Jan 2, 2006") }}
+			</time>
+
+		{{ with .Params.tags }}
+			<ul class="tag">
+			{{ range . }}
+				<li><a href="{{ "tags" | absURL }}/{{ . | urlize }}">{{ . }}</a></li>
+			{{ end }}
+			</ul>
+		{{ end }}
+		</div>
+
+		<div class="entry">
+			{{ plainify .Summary }}
+		</div>
+
+		<a href="{{ .Permalink }}" class="read-more">Read More</a>
+	</section>
+	{{ end }}
+</article>
+
+{{ if gt .Paginator.TotalPages 1 }}
+<div class="pagination">
+	{{ if .Paginator.HasPrev }}
+	<span class="prev">
+		<a href="{{ .Paginator.Prev.URL }}" class="prev">&#12298; Previous</a>
+	</span>
+	{{ end }}
+	{{ if .Paginator.HasNext }}
+	<span class="next">
+		<a href="{{ .Paginator.Next.URL }}" class="next">Next &#12299;</a>
+	</span>
+	{{ end }}
+</div>
+{{ end }}
+{{ end }}

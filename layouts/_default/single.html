@@ -1,0 +1,40 @@
+{{ define "title" }}{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ end }}
+
+{{ define "main" }}
+<article class="post">
+	<h1>{{ .Title }}</h1>
+
+	<div class="meta">
+		<time class="date">
+			{{ .Date.Format ( .Site.Params.dateformat | default "Jan 2, 2006") }}
+		</time>
+
+		{{ with .Params.tags }}
+		<ul class="tag">
+			{{ range . }}
+			<li><a href="{{ "tags" | absURL }}/{{ . | urlize }}">{{ . }}</a></li>
+			{{ end }}
+		</ul>
+		{{ end }}
+	</div>
+
+{{ if .Params.toc }}{{ .TableOfContents }}{{ end }}
+
+	<div class="entry">
+		{{ .Content }}
+	</div>
+</article>
+
+<div class="pagination">
+	{{ with .PrevInSection }}
+	<span class="prev" >
+		<a href="{{ .Permalink }}">&#12298; {{ .Title }}</a>
+	</span>
+	{{ end }}
+	{{ with .NextInSection }}
+	<span class="next" >
+		<a href="{{ .Permalink }}">{{ .Title }} &#12299;</a>
+	</span>
+	{{ end }}
+</div>
+{{ end }}

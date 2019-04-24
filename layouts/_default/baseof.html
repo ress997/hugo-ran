@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode | default "en" }}">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+	<link rel="canonical" href="{{ .Permalink }}">
+{{ range .AlternativeOutputFormats -}}
+	<link rel="{{ .Rel }}" type="{{ .MediaType.Type | html }}" href="{{ .Permalink | safeURL }}" title="{{ $.Site.Title | safeHTML }}">
+{{ end -}}
+
+	<title>{{ block "title" . }}{{ end }}{{ .Site.Title }}</title>
+
+{{ partial "head.html" . }}
+
+	{{ $style := resources.Get "main.scss" | toCSS | minify | fingerprint }}
+	<link rel="stylesheet" href="{{ $style.Permalink }}">
+
+{{ if and .Site.GoogleAnalytics (not .Site.IsServer) }}
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', {{ .Site.GoogleAnalytics }}, 'auto');
+ga('send', 'pageview');
+</script>
+{{ end }}
+</head>
+<body>
+	<header class="masthead clearfix">
+		<div class="container">
+			{{ with .Site.Params.Icon }}
+			<a href="{{ "/" | absURL }}" class="site-avatar">
+				<img src="{{ . }}">
+			</a>
+			{{ end }}
+
+			<div class="site-info">
+				<h1 class="site-name">
+					<a href="{{ "/" | absURL }}">{{ .Site.Title }}</a>
+				</h1>
+				{{ with .Site.Params.Description }}
+				<p class="site-description">{{ . }}</p>
+				{{ end }}
+			</div>
+
+			{{ with .Site.Menus.main }}
+			<nav>
+				{{ range .ByWeight }}
+				<a href="{{ .URL }}">{{ .Name }}</a>
+				{{ end }}
+			</nav>
+			{{ end }}
+		</div>
+	</header>
+
+	<main id="barba-wrapper">
+		<div class="container barba-container">
+			{{ block "main" . }}{{ end }}
+		</div>
+	</main>
+
+	<footer class="wrapper-footer">
+		{{ partial "share.html" . }}
+
+		<p>{{ with .Site.Copyright }}{{ . | safeHTML }}{{ else }}&copy; {{ .Site.Title }}{{ end }}</p>
+	</footer>
+<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
+<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/barba.js@1.0.0/dist/barba.min.js"></script>
+<script>
+const observer = lozad();
+observer.observe();
+Barba.Pjax.start();
+Barba.Prefetch.init();
+
+{{ if and .Site.GoogleAnalytics (not .Site.IsServer) }}
+Barba.Dispatcher.on('initStateChange', function() {
+	if (typeof ga === 'function' && Barba.HistoryManager.history.length >= 1) {
+		ga('send', 'pageview', location.pathname);
+	}
+});
+{{ end }}
+
+Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container, newPageRawHTML) {
+	observer.observe();
+
+	var head = document.head;
+	var newPageRawHead = newPageRawHTML.match(/<head[^>]*>([\s\S.]*)<\/head>/i)[0];
+	var newPageHead = document.createElement('head');
+	newPageHead.innerHTML = newPageRawHead;
+	var removeHeadTags = [
+		"script[type='application/ld+json']",
+		"meta[name='description']",
+		"meta[property^='og']",
+		"meta[name^='twitter']",
+		"meta[itemprop]","link[itemprop]",
+		"link[rel='prev']","link[rel='next']",
+		"link[rel='canonical']"
+	].join(',');
+	var headTags = head.querySelectorAll(removeHeadTags)
+	for(var i = 0; i < headTags.length; i++ ){
+		head.removeChild(headTags[i]);
+	}
+	var newHeadTags = newPageHead.querySelectorAll(removeHeadTags)
+	for(var i = 0; i < newHeadTags.length; i++ ){
+		head.appendChild(newHeadTags[i]);
+	}
+});
+
+Barba.Dispatcher.on('transitionCompleted',function(){
+	if(location.hash){
+		var anchor = document.querySelector( location.hash );
+		if(anchor){
+			var rect = anchor.getBoundingClientRect();
+			var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+			var top = rect.top + scrollTop;
+			window.scrollTo(0,top);
+		}else{
+			window.scrollTo(0,0);
+		}
+	}else{
+		window.scrollTo(0,0);
+	}
+});
+</script>
+</body>
+</html>
