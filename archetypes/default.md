@@ -1,7 +1,7 @@
 ---
 title: "{{ .TranslationBaseName | humanize | title }}"
 date: "{{ .Date }}"
-tags: [] 
+tags: []
 description: ""
 thumbnail: ""
 toc: true
