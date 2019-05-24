@@ -48,7 +48,7 @@
 	margin: 0;
 	color: #333;
 	cursor: pointer;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: helvetica, arial, sans-serif;
 	font-weight: 300;
 	font-size: 28px;
 	letter-spacing: 1px;
@@ -69,7 +69,7 @@
 nav {
 	float: right;
 	margin-top: 23px;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: helvetica, arial, sans-serif;
 	font-size: 18px;
 	a {
 		margin-left: 20px;
@@ -250,7 +250,7 @@ footer {
 
 // Code
 pre, code {
-	font-family: "Menlo", "Courier New", "Monaco", "Spoqa Han Sans", monospace;
+	font-family: monospace;
 }
 
 pre {
