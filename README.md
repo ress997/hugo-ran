@@ -1,6 +1,6 @@
 蘭 (Ran)
 ===
-You need the extended version of >= Hugo 0.43 to run this site.
+You need the extended version of >= Hugo 0.55.0 to run this site.
 
 ## Features
 - Responsive design
