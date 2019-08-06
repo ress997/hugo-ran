@@ -26,13 +26,13 @@
 </article>
 
 <div class="pagination">
-	{{ with .PrevInSection }}
-	<span class="prev" >
+	{{ with .NextInSection }}
+	<span class="left">
 		<a href="{{ .Permalink }}">&#12298; {{ .Title }}</a>
 	</span>
 	{{ end }}
-	{{ with .NextInSection }}
-	<span class="next" >
+	{{ with .PrevInSection }}
+	<span class="right">
 		<a href="{{ .Permalink }}">{{ .Title }} &#12299;</a>
 	</span>
 	{{ end }}

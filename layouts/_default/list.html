@@ -34,12 +34,12 @@
 {{ if gt .Paginator.TotalPages 1 }}
 <div class="pagination">
 	{{ if .Paginator.HasPrev }}
-	<span class="prev">
+	<span class="left">
 		<a href="{{ .Paginator.Prev.URL }}" class="prev">&#12298; Previous</a>
 	</span>
 	{{ end }}
 	{{ if .Paginator.HasNext }}
-	<span class="next">
+	<span class="right">
 		<a href="{{ .Paginator.Next.URL }}" class="next">Next &#12299;</a>
 	</span>
 	{{ end }}

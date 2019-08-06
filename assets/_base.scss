@@ -181,18 +181,15 @@ dt {
 	margin-bottom: 0.4em;
 }
 
-@media screen and (max-width: 640px) {
-	dt {
-		width: 120px;
-	}
-}
-
 dd {
 	margin-left: 200px;
 	margin-bottom: 0.4em;
 }
 
 @media screen and (max-width: 640px) {
+	dt {
+		width: 120px;
+	}
 	dd {
 		margin-left: 140px;
 	}

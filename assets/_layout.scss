@@ -149,19 +149,13 @@ nav {
 	width: 100%;
 	display: inline-block;
 	> {
-		.prev {
+		.left {
 			float: left;
-			width: 50%;
-			a {
-				color: #868e96;
-				&:hover, &:focus {
-					color: #495057;
-				}
-			}
 		}
-		.next {
+		.right {
 			float: right;
-			text-align: right;
+		}
+		.left, .right {
 			width: 50%;
 			a {
 				color: #868e96;
