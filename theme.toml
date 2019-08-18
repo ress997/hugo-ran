@@ -5,7 +5,7 @@ homepage = "https://github.com/ress997/hugo-ran"
 description = ""
 tags = []
 features = []
-min_version = "0.55.0"
+min_version = "0.57.2"
 
 [author]
 name = "Ress"

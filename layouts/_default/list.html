@@ -2,7 +2,10 @@
 
 {{ define "main" }}
 <article class="posts">
-	{{ range (.Paginate .Data.Pages).Pages }}
+	{{ $pctx := . }}
+	{{ if .IsHome }}{{ $pctx = .Site }}{{ end }}
+	{{ $pages := $pctx.RegularPages }}
+	{{ range $pages }}
 	<section class="post">
 		<h1>
 			<a href="{{ .Permalink }}">{{ .Title }}</a>
