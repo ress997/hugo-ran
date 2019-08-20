@@ -4,8 +4,8 @@
 <article class="posts">
 	{{ $pctx := . }}
 	{{ if .IsHome }}{{ $pctx = .Site }}{{ end }}
-	{{ $pages := $pctx.RegularPages }}
-	{{ range $pages }}
+	{{ $paginator := .Paginate $pctx.RegularPages }}
+	{{ range $paginator.Pages }}
 	<section class="post">
 		<h1>
 			<a href="{{ .Permalink }}">{{ .Title }}</a>
