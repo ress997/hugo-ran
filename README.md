@@ -1,10 +1,10 @@
 蘭 (Ran)
 ===
-You need the extended version of >= Hugo 0.55.0 to run this site.
 
 ## Features
 - Responsive design
-- Google Analytics
+- Google Analytics with [gs-lite](https://github.com/jehna/ga-lite)
+- Lazy Load Images with [Lozad.js](https://github.com/ApoorvSaxena/lozad.js)
 
 ## `config.toml` example
 ```toml
