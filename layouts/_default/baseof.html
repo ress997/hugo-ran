@@ -55,10 +55,8 @@ galite('send', 'pageview');
 		</div>
 	</header>
 
-	<main id="barba-wrapper">
-		<div class="container barba-container">
-			{{ block "main" . }}{{ end }}
-		</div>
+	<main class="container">
+		{{ block "main" . }}{{ end }}
 	</main>
 
 	<footer class="wrapper-footer">
@@ -68,63 +66,9 @@ galite('send', 'pageview');
 	</footer>
 <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
 <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/barba.js@1.0.0/dist/barba.min.js"></script>
 <script>
 const observer = lozad();
 observer.observe();
-Barba.Pjax.start();
-Barba.Prefetch.init();
-
-{{ if and .Site.GoogleAnalytics (not .Site.IsServer) }}
-Barba.Dispatcher.on('initStateChange', function() {
-	if (typeof galite === 'function' && Barba.HistoryManager.history.length >= 1) {
-		galite('send', 'pageview', location.pathname);
-	}
-});
-</script>
-{{ end }}
-
-Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container, newPageRawHTML) {
-	observer.observe();
-
-	var head = document.head;
-	var newPageRawHead = newPageRawHTML.match(/<head[^>]*>([\s\S.]*)<\/head>/i)[0];
-	var newPageHead = document.createElement('head');
-	newPageHead.innerHTML = newPageRawHead;
-	var removeHeadTags = [
-		"script[type='application/ld+json']",
-		"meta[name='description']",
-		"meta[property^='og']",
-		"meta[name^='twitter']",
-		"meta[itemprop]","link[itemprop]",
-		"link[rel='prev']","link[rel='next']",
-		"link[rel='canonical']"
-	].join(',');
-	var headTags = head.querySelectorAll(removeHeadTags)
-	for(var i = 0; i < headTags.length; i++ ){
-		head.removeChild(headTags[i]);
-	}
-	var newHeadTags = newPageHead.querySelectorAll(removeHeadTags)
-	for(var i = 0; i < newHeadTags.length; i++ ){
-		head.appendChild(newHeadTags[i]);
-	}
-});
-
-Barba.Dispatcher.on('transitionCompleted',function(){
-	if(location.hash){
-		var anchor = document.querySelector( location.hash );
-		if(anchor){
-			var rect = anchor.getBoundingClientRect();
-			var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-			var top = rect.top + scrollTop;
-			window.scrollTo(0,top);
-		}else{
-			window.scrollTo(0,0);
-		}
-	}else{
-		window.scrollTo(0,0);
-	}
-});
 </script>
 </body>
 </html>
