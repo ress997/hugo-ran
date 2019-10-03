@@ -16,11 +16,14 @@
 	<link rel="stylesheet" href="{{ $style.Permalink }}">
 
 {{ if and .Site.GoogleAnalytics (not .Site.IsServer) }}
-<script async src='https://www.google-analytics.com/analytics.js'></script>
 <script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', {{ .Site.GoogleAnalytics }}, 'auto');
-ga('send', 'pageview');
+(function(e,t,n,i,s,a,c){e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)}
+;a=t.createElement(i);c=t.getElementsByTagName(i)[0];a.async=true;a.src=s
+;c.parentNode.insertBefore(a,c)
+})(window,document,"galite","script","https://cdn.jsdelivr.net/npm/ga-lite@2/dist/ga-lite.min.js");
+
+galite('create', {{ .Site.GoogleAnalytics }}, 'auto', {'useAmpClientId': true});
+galite('send', 'pageview');
 </script>
 {{ end }}
 </head>
@@ -74,10 +77,11 @@ Barba.Prefetch.init();
 
 {{ if and .Site.GoogleAnalytics (not .Site.IsServer) }}
 Barba.Dispatcher.on('initStateChange', function() {
-	if (typeof ga === 'function' && Barba.HistoryManager.history.length >= 1) {
-		ga('send', 'pageview', location.pathname);
+	if (typeof galite === 'function' && Barba.HistoryManager.history.length >= 1) {
+		galite('send', 'pageview', location.pathname);
 	}
 });
+</script>
 {{ end }}
 
 Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container, newPageRawHTML) {
