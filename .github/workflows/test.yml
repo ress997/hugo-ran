@@ -1,11 +1,11 @@
-name: CI
+name: TEST
 on: [push, pull_request]
 jobs:
   build:
     name: Build Test
     runs-on: ubuntu-latest
     steps:
-      - name: Build
+      - name: Test build with hugoBasicExample
         run: |
           git clone -b master --single-branch --depth=1 https://github.com/gohugoio/hugoBasicExample.git ~/tmp
           cd ~/tmp
@@ -14,4 +14,4 @@ jobs:
           tar xzf hugo.tar.gz hugo
           rm -rf hugo.tar.gz
           git clone -b master --single-branch --depth=1 https://github.com/ress997/hugo-ran.git themes/ran
-          ./hugo --minify
+          ./hugo --theme ran --minify
