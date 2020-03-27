@@ -37,4 +37,14 @@
 	</span>
 	{{ end }}
 </div>
+
+{{ if .Site.Params.utteranc.repo }}
+<script src="https://utteranc.es/client.js"
+	repo="{{ .Site.Params.utteranc.repo }}"
+	issue-term="{{ .Site.Params.utteranc.issueTerm | default "pathname" }}"
+	theme="{{ .Site.Params.utteranc.theme | default "github-light" }}"
+	crossorigin="anonymous"
+	async>
+</script>
+{{ end }}
 {{ end }}

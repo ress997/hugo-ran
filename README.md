@@ -8,9 +8,16 @@
 
 ## `config.toml` example
 ```toml
+theme = "ran"
+
 baseurl = "https://example.com/"
 title = "SiteTitle"
-theme = "ran"
+
+[params.utteranc]
+# https://utteranc.es/
+repo = "owner/repo"
+issueTerm = "pathname"
+theme = "github-light"
 ```
 
 ## Shortcodes
