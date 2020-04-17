@@ -38,13 +38,15 @@
 	{{ end }}
 </div>
 
-{{ if .Site.Params.utteranc.repo }}
+{{ if .Site.Params.Utterances.Repo }}
+	{{ if not (.Params.DisableComment | default false) }}
 <script src="https://utteranc.es/client.js"
-	repo="{{ .Site.Params.utteranc.repo }}"
-	issue-term="{{ .Site.Params.utteranc.issueTerm | default "pathname" }}"
-	theme="{{ .Site.Params.utteranc.theme | default "github-light" }}"
+	repo="{{ .Site.Params.Utterances.Repo }}"
+	issue-term="{{ .Site.Params.Utterances.IssueTerm | default "pathname" }}"
+	theme="{{ .Site.Params.Utterances.Theme | default "github-light" }}"
 	crossorigin="anonymous"
 	async>
 </script>
+	{{ end }}
 {{ end }}
 {{ end }}

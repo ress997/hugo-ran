@@ -30,8 +30,8 @@
 
 {{ partial "head.html" . }}
 
-{{ with resources.Get "main.scss" | toCSS | minify }}
-	<style amp-custom>{{ .Content | safeCSS }}</style>
+{{ with resources.Get "main.scss" | toCSS }}
+	<style>{{ replace .Content `@charset "UTF-8";` "" | safeCSS }}</style>
 {{ end }}
 </head>
 <body>

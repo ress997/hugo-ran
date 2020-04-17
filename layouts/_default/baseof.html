@@ -64,11 +64,12 @@ galite('send', 'pageview');
 
 		<p>{{ with .Site.Copyright }}{{ . | safeHTML }}{{ else }}&copy; {{ .Site.Title }}{{ end }}</p>
 	</footer>
-<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
+{{ if .Page.HasShortcode "img" }}
 <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
 <script>
 const observer = lozad();
 observer.observe();
 </script>
+{{ end }}
 </body>
 </html>
