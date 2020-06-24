@@ -31,7 +31,7 @@
 {{ partial "head.html" . }}
 
 {{ with resources.Get "main.scss" | toCSS }}
-	<style>{{ replace .Content `@charset "UTF-8";` "" | safeCSS }}</style>
+	<style amp-custom>{{ .Content | safeCSS }}</style>
 {{ end }}
 </head>
 <body>
